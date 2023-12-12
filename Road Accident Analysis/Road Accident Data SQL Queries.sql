@@ -67,7 +67,7 @@ WHERE YEAR(accident_date) = '2022'
 GROUP BY road_type;
 
 --Casualties by Urban/Rural--
-SELECT urban_or_rural_area, CAST(CAST(SUM(number_of_casualties) AS DECIMAL(10,2)) * 100 / (SELECT CAST(SUM(number_of_casualties) AS DECIMAL(10,2)) FROM road_accident WHERE YEAR(accident_date) = '2022') AS DECIMAL(10,2)) AS PCT
+SELECT urban_or_rural_area, CAST(CAST(SUM(number_of_casualties) AS DECIMAL(10,2)) * 100 / (SELECT CAST(SUM(number_of_casualties) AS DECIMAL(10,2)) FROM [Road Accident]..road_accident WHERE YEAR(accident_date) = '2022') AS DECIMAL(10,2)) AS PCT
 FROM [Road Accident]..road_accident
 WHERE YEAR(accident_date) = '2022'
 GROUP BY urban_or_rural_area;
@@ -78,7 +78,7 @@ SELECT
 		WHEN light_conditions LIKE '%Day%' THEN 'Light'
 		WHEN light_conditions LIKE '%Dark%' THEN 'Dark'
 	END AS Light_Condition,
-	CAST(CAST(SUM(number_of_casualties) AS DECIMAL(10,2)) * 100 / (SELECT CAST(SUM(number_of_casualties) AS DECIMAL(10,2)) FROM road_accident WHERE YEAR(accident_date) = '2022') AS DECIMAL(10,2)) AS PCT
+	CAST(CAST(SUM(number_of_casualties) AS DECIMAL(10,2)) * 100 / (SELECT CAST(SUM(number_of_casualties) AS DECIMAL(10,2)) FROM [Road Accident]..road_accident WHERE YEAR(accident_date) = '2022') AS DECIMAL(10,2)) AS PCT
 FROM [Road Accident]..road_accident
 WHERE YEAR(accident_date) = '2022'
 GROUP BY 
